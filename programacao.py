@@ -1,8 +1,8 @@
 from random import shuffle
 from random import gauss
 from random import random
-
 import os
+
 os.system('cls' if os.name == 'nt' else 'clear')
 
 def database(file_data):
@@ -22,7 +22,7 @@ def integerList(data_list):
 
     age = data_list[0]
 
-    sex = 0
+    sex = 1
     if data_list[2] == 'female': sex = 2
     if data_list[2] == 'male': sex = 1
 
@@ -122,7 +122,7 @@ def calibrateList(data_list):
         alphas = gauss(0.00005,0.00000001)
         alphas_list.append(alphas)
     
-    for e in range(50):
+    for e in range(300):
         shuffle(data_list)
         for i in data_list:       
             customer_list = i
@@ -142,7 +142,7 @@ def calibrateList(data_list):
             #proximaListaDePesos = []
 
             for n in range(9):
-                alphas_list[n] = alphas_list[n] + 0.001 * (prediction - int(customer_list[-1])) * int(customer_list[n])
+                alphas_list[n] = alphas_list[n] + 0.083 * (prediction - int(customer_list[-1])) * int(customer_list[n])
         
     return alphas_list
 
@@ -187,6 +187,7 @@ def creditRequest():
 
     client = [age, sex, employment, home, savings_account, checking_account, credit_claim, time, purpose]
     return client
+
 
 #Area de testes
 
